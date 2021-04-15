@@ -4,6 +4,7 @@ metadata:
   name: cluster
 spec:
   imagePullPolicy: IfNotPresent
+  ovs: {}
   multus: {}
   nmstate: {}
   macvtap: {}
@@ -25,5 +26,3 @@ spec:
     workloads:
       nodeSelector:
         node-role.kubernetes.io/worker: ""
-# kubeMacPool: {}
-# ovs: {}

@@ -7,9 +7,9 @@ spec:
   generators:
   - git:
       repoURL: https://github.com/usrbinkat/devskill-argocd
-      revision: main
+      revision: '{{ref}}'
       files:
-      - path: "kargo/clusters/**/config.json"
+      - path: "clusters/**/config.json"
   template:
     metadata:
       name: '{{cluster.name}}-kargo'
@@ -21,8 +21,8 @@ spec:
           selfHeal: true
       source:
         repoURL: https://github.com/usrbinkat/devskill-argocd
-        targetRevision: main
-        path: kargo/overlays/{{cluster.overlay}}
+      revision: '{{ref}}'
+        path: overlays/{{cluster.overlay}}
       destination:
         server: '{{cluster.server}}'
         namespace: kargo

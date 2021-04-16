@@ -7,7 +7,7 @@ spec:
   generators:
   - git:
       repoURL: https://github.com/usrbinkat/devskill-argocd
-      revision: '{{ref}}'
+      revision: main
       files:
       - path: "clusters/**/config.json"
   template:
@@ -21,7 +21,7 @@ spec:
           selfHeal: true
       source:
         repoURL: https://github.com/usrbinkat/devskill-argocd
-      revision: '{{ref}}'
+        targetRevision: main
         path: overlays/{{cluster.overlay}}
       destination:
         server: '{{cluster.server}}'

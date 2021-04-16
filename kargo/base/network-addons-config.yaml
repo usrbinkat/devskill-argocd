@@ -1,0 +1,31 @@
+apiVersion: networkaddonsoperator.network.kubevirt.io/v1
+kind: NetworkAddonsConfig
+metadata:
+  name: kargo-network-addons-config
+spec:
+  ovs: {}
+  multus: {}
+  nmstate: {}
+  macvtap: {}
+  linuxBridge: {}
+  selfSignConfiguration:
+    caRotateInterval: 168h
+    caOverlapInterval: 24h
+    certRotateInterval: 24h
+    certOverlapInterval: 8h
+  imagePullPolicy: IfNotPresent
+  placementConfiguration:
+    infra:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: node-role.kubernetes.io/edge
+                operator: Exists
+              - key: node-role.kubernetes.io/worker
+                operator: Exists
+    workloads:
+      nodeSelector:
+        node-role.kubernetes.io/edge: ""
+        node-role.kubernetes.io/worker: ""

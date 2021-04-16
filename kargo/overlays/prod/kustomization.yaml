@@ -1,0 +1,9 @@
+bases:
+- ../../base
+patchesJson6902:
+  - target:
+      version: v1
+      group: default
+      kind: Deployment
+      name: kargo
+    path: kargo-deployment.yaml

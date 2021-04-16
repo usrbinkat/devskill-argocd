@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: kargo
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/usrbinkat/devskill-argocd
+      revision: master
+      files:
+      - path: "kargo/clusters/**/config.json"
+  template:
+    metadata:
+      name: '{{cluster.name}}-kargo'
+    spec:
+      project: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+      source:
+        repoURL: https://github.com/usrbinkat/devskill-argocd
+        targetRevision: master
+        path: kargo/overlays/{{cluster.overlay}}
+      destination:
+        server: '{{cluster.server}}'
+        namespace: kargo

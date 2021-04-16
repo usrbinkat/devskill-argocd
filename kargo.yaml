@@ -1,0 +1,43 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: kargo
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+      - cluster: spindle
+        url: https://kubernetes.default.svc
+        namespace: kargo
+  template:
+    metadata:
+      name: '{{cluster}}-kargo'
+    spec:
+      project: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          limit: 5
+          backoff:
+            factor: 2
+            duration: 15
+            maxDuration: 3m
+        syncOptions:
+        - Prune=true
+        - Replace=false
+        - Validate=true
+        - CreateNamespace=true
+        - ApplyOutOfSyncOnly=true
+        - PrunePropagationPolicy=foreground
+      source:
+        path: kargo/applicationsets/list-generator/overlays/{{cluster}}
+        repoURL: https://github.com/usrbinkat/devskill-argocd
+        targetRevision: master
+        directory:
+          recurse: true
+      destination:
+        server: '{{url}}'
+        namespace: '{{namespace}}'

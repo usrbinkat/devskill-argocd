@@ -1,0 +1,7 @@
+{
+  "cluster": {
+    "name": "uswest1-prod",
+    "server": "https://kubernetes.default.svc",
+    "overlay": "prod"
+  }
+}

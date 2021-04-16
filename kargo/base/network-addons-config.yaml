@@ -1,7 +1,7 @@
 apiVersion: networkaddonsoperator.network.kubevirt.io/v1
 kind: NetworkAddonsConfig
 metadata:
-  name: kargo-network-addons-config
+  name: network-addons-config
 spec:
   ovs: {}
   multus: {}

@@ -6,4 +6,7 @@ metadata:
 commonLabels:
   app: kargo
 resources:
-- network-addons
+- network-addons/network-addons-config.yaml
+- network-addons/network-addons-crd.yaml
+- network-addons/network-addons-namespace.yaml
+- network-addons/network-addons-operator.yaml

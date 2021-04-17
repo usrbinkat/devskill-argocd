@@ -8,4 +8,5 @@ commonLabels:
 resources:
 - cert-manager
 - network-addons
+- hostpath-provisioner
 - containerized-data-importer

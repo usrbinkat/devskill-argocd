@@ -6,5 +6,6 @@ metadata:
 commonLabels:
   app: kargo
 resources:
+- cert-manager
 - network-addons
 - containerized-data-importer

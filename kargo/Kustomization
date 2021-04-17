@@ -7,3 +7,4 @@ commonLabels:
   app: kargo
 resources:
 - network-addons
+- containerized-data-importer

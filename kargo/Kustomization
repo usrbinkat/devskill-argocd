@@ -6,6 +6,7 @@ metadata:
 commonLabels:
   app: kargo
 resources:
+- kubevirt
 - cert-manager
 - network-addons
 - hostpath-provisioner

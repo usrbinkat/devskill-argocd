@@ -9,7 +9,7 @@ spec:
       repoURL: https://github.com/usrbinkat/devskill-argocd
       revision: main
       files:
-      - path: "clusters/**/config.json"
+      - path: "kargo/clusters/**/config.json"
   template:
     metadata:
       name: '{{cluster.name}}-kargo'
@@ -22,7 +22,7 @@ spec:
       source:
         repoURL: https://github.com/usrbinkat/devskill-argocd
         targetRevision: main
-        path: overlays/{{cluster.overlay}}
+        path: 'kargo/overlays/{{cluster.overlay}}'
       destination:
         server: '{{cluster.server}}'
         namespace: kargo
